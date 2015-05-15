@@ -2,5 +2,6 @@ execute pathogen#infect()
 colorscheme vividchalk
 set number
 set smartindent
+set expandtab
 set tabstop=4
 set shiftwidth=4

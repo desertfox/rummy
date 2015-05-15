@@ -1,6 +1,6 @@
 class rummy {
 
-    $package = ['vim-common', 'vim-enhanced']
+    $package = ['vim-common', 'vim-enhanced', 'zsh']
 
     $user = 'rummy'
 
