@@ -1,3 +1,4 @@
+   
    $package = ['vim', 'vim-common', 'zsh']
 
    $user = 'rummy'
@@ -41,10 +42,16 @@
         require => Package['zsh']
     }
 
-    file { "/home/${user}/.oh-my-zsh" :
-        recurse => true,
-        owner => $user,
-        group => $user,
-        source => "${pwd}/modules/oh-my-zsh",
-        require => Package['zsh']
+    vcsrepo { "/home/${user}/.oh-my-zsh":
+        ensure => present,
+        provider => git,
+        source => "git://github.com/robbyrussell/oh-my-zsh.git"
     }
+
+    #file { "/home/${user}/.oh-my-zsh" :
+    #    recurse => true,
+    #    owner => $user,
+    #    group => $user,
+    #    source => "${pwd}/modules/oh-my-zsh",
+    #    require => Package['zsh']
+    #}
