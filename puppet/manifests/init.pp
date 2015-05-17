@@ -2,6 +2,8 @@
 
    $user = 'rummy'
 
+   $pwd = inline_template('<%= Dir.pwd %>')
+
    user { $user:
     	ensure => "present",
     	home   => "/home/${user}",
@@ -18,12 +20,17 @@
     } 
 
     file { "/home/${user}/.vimrc" :
-        source => inline_template('<%= Dir.pwd + \'/modules/vimrc\' %>'),
+        source => "${pwd}/modules/vimrc",
 	    require => [ Package['vim'], User[$user] ]
     }
 
     file { "/home/${user}/.vim" :
         recurse => true,
-        source =>  inline_template('<%= Dir.pwd + \'/modules/vim\' %>'),
+        source =>  "${pwd}/modules/vim",
         require => Package['vim']
+    }
+
+    file { "/home/${user}/.zshrc" :
+        source => "${pwd}/modules/zshrc",
+        require => Package['zsh']
     }
